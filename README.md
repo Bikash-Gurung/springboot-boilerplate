@@ -5,7 +5,7 @@ This is Spring Boot boilerplate project with JWT based authenticatication and Ro
  - Signup 
  (User will get JWT token which is valid for 5 min and Welcome email with 6 digit OTP)
  - Login
- - Email verification (User won;t be able to access other resources without verifying email)
+ - Email verification (User won't be able to access other resources without verifying email)
  - Logout
  - Update user name
 

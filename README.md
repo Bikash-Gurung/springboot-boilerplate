@@ -1,5 +1,5 @@
 # Spring Boot Boilerplate
-This is the Spring Boot boilerplate project with JWT based authenticatication and Role based authorization.
+This is Spring Boot boilerplate project with JWT based authenticatication and Role based authorization.
 
 # Features
  - Signup 

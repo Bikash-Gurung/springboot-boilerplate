@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/<DB_NAME>?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    password: <DB_USER_PASSWORD>
+    username: <DB_USER_NAME
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: UTC
+  redis:
+    host: localhost
+    port: 6379
+  mail:
+    host: smtp.gmail.com
+    protocol: smtp
+    port: 587
+    username: <EMAIL>
+    password: <PASSWORD>
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+app:
+  jwtSecret: 7vC&xTPpHp*_$Ca48#uHpz-C3PN$P$7N3$^LjvkN
+  jwtExpirationInMs: 300000

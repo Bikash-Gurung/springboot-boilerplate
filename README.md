@@ -1,5 +1,11 @@
 # Spring Boot Boilerplate
-This is Spring Boot boilerplate project with JWT based authenticatication and Role based authorization.
+This is Spring Boot boilerplate project with JWT based authentication and Role based authorization.
+
+# Tools and Technologies
+1. Java 8
+2. Spring Boot 2.5.2
+3. MySQL
+4. Redis
 
 # Features
  - Signup 

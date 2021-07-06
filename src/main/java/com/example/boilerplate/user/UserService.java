@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -33,5 +35,9 @@ public class UserService {
     public User getUserById(UUID userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+    }
+
+    public List<UserInfoResponse> getAllUsers(){
+        return userRepository.findAll().stream().map(user -> userMapper.toUserInfoResponse(user)).collect(Collectors.toList());
     }
 }

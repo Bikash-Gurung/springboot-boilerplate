@@ -76,16 +76,17 @@ public class AuthService {
     @Transactional
     public JWTAuthenticationResponse register(SignUpRequest signUpRequest) {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            throw new BadRequestException("EmailTemplate address already exist");
+            throw new BadRequestException("Email address already exist");
         }
 
         User user = userRepository.save(buildUser(signUpRequest));
         String jwtToken = jwtTokenProvider.generateToken();
         authTokenService.create(user.getId(), jwtToken);
+
         try {
             mailService.sendEmail(user, EmailTemplate.EMAIL_VERIFICATION);
         } catch (MessagingException | IOException | TemplateException e) {
-            logger.error("Inable to send email verification email to user {}", user.getEmail());
+            logger.error("Unable to send email verification email to user {}", user.getEmail());
         }
 
         return new JWTAuthenticationResponse(jwtToken);

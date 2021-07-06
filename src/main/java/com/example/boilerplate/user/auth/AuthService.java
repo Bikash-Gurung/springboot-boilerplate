@@ -12,7 +12,6 @@ import com.example.boilerplate.mail.MailService;
 import com.example.boilerplate.redis.AuthToken;
 import com.example.boilerplate.redis.AuthTokenService;
 import com.example.boilerplate.security.JWTTokenProvider;
-import com.example.boilerplate.security.UserPrincipal;
 import com.example.boilerplate.user.UserService;
 import com.example.boilerplate.user.auth.dto.EmailVerificationRequest;
 import com.example.boilerplate.user.auth.dto.JWTAuthenticationResponse;
@@ -81,7 +80,7 @@ public class AuthService {
         }
 
         User user = userRepository.save(buildUser(signUpRequest));
-        String jwtToken = jwtTokenProvider.generateToken(user.getEmail());
+        String jwtToken = jwtTokenProvider.generateToken();
         authTokenService.create(user.getId(), jwtToken);
         try {
             mailService.sendEmail(user, EmailTemplate.EMAIL_VERIFICATION);
@@ -124,9 +123,8 @@ public class AuthService {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
-        return tokenProvider.generateToken(userPrincipal.getEmail());
+        return tokenProvider.generateToken();
     }
 
     public void logOut(UUID userId) {
@@ -137,10 +135,9 @@ public class AuthService {
         Optional<AuthToken> authToken = authTokenService.getAuthToken(tokenRequest.getToken());
 
         if (authToken.isPresent()) {
-            User user = userRepository.findById(authToken.get().getUserId()).get();
             authTokenService.deleteAuthTokenByJWTToken(tokenRequest.getToken());
 
-            return new JWTAuthenticationResponse(jwtTokenProvider.generateToken(user.getEmail()));
+            return new JWTAuthenticationResponse(jwtTokenProvider.generateToken());
         } else {
             throw new BadRequestException("Invalid token");
         }

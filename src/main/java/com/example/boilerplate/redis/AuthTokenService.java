@@ -56,11 +56,15 @@ public class AuthTokenService {
     }
 
     public void removeInactiveTokens() {
-        authTokenRepository.findAll().forEach(this::deleteInactiveToken);
+        List<AuthToken> authTokens = (List<AuthToken>) authTokenRepository.findAll();
+
+        if (authTokens.size() < 1) {
+            authTokens.forEach(this::deleteInactiveToken);
+        }
     }
 
     private void deleteInactiveToken(AuthToken authToken) {
-        LocalDateTime timeToDeleteToken = LocalDateTime.now().minusMinutes(6);
+        LocalDateTime timeToDeleteToken = LocalDateTime.now().minusMinutes(10);
 
         if (authToken.getCreatedAt().isBefore(timeToDeleteToken)) {
             deleteAuthTokenByJWTToken(authToken.getJwtToken());

@@ -8,10 +8,12 @@
     <title>Spring Boot Email using FreeMarker</title>
 </head>
 <body>
-<div style="margin-top: 10px">Hello ${USER_NAME}</div>
-<br>
-<div>Your email verification code is ${VERIFICATION_CODE}</b></div>
-<br/>
-<div>Thank you.</div>
+    <div style="margin-top: 10px">Hello ${USER_NAME}</div>
+    <br>
+
+    <div>Your email verification code is ${VERIFICATION_CODE}</b></div>
+    <br/>
+
+    <div>Thank you.</div>
 </body>
 </html>

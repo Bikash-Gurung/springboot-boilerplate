@@ -2,19 +2,18 @@ package com.example.boilerplate.user.auth;
 
 import com.example.boilerplate.annotation.CurrentUser;
 import com.example.boilerplate.security.UserPrincipal;
-import com.example.boilerplate.user.auth.dto.EmailVerificationRequest;
-import com.example.boilerplate.user.auth.dto.JWTAuthenticationResponse;
 import com.example.boilerplate.user.auth.dto.TokenRequest;
 import com.example.boilerplate.user.auth.dto.LoginRequest;
 import com.example.boilerplate.user.auth.dto.SignUpRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import com.example.boilerplate.user.auth.dto.EmailVerificationRequest;
+import com.example.boilerplate.user.auth.dto.JWTAuthenticationResponse;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.validation.Valid;
 

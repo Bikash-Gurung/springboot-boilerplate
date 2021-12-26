@@ -2,8 +2,8 @@ package com.example.boilerplate.enums;
 
 import lombok.Getter;
 
-import java.util.Arrays;
 import java.util.Map;
+import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 

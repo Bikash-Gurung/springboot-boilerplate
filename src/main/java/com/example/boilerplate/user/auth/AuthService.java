@@ -1,45 +1,49 @@
 package com.example.boilerplate.user.auth;
 
-import com.example.boilerplate.common.VerificationCodeGenerator;
 import com.example.boilerplate.entity.Role;
 import com.example.boilerplate.entity.User;
-import com.example.boilerplate.enums.EmailTemplate;
 import com.example.boilerplate.enums.RoleName;
-import com.example.boilerplate.exception.AppException;
-import com.example.boilerplate.exception.BadRequestException;
-import com.example.boilerplate.exception.UnauthorizedAccessException;
-import com.example.boilerplate.mail.MailService;
 import com.example.boilerplate.redis.AuthToken;
+import com.example.boilerplate.user.UserService;
+import com.example.boilerplate.mail.MailService;
+import com.example.boilerplate.enums.EmailTemplate;
+import com.example.boilerplate.exception.AppException;
 import com.example.boilerplate.redis.AuthTokenService;
 import com.example.boilerplate.security.JWTTokenProvider;
-import com.example.boilerplate.user.UserService;
-import com.example.boilerplate.user.auth.dto.EmailVerificationRequest;
-import com.example.boilerplate.user.auth.dto.JWTAuthenticationResponse;
 import com.example.boilerplate.user.auth.dto.TokenRequest;
 import com.example.boilerplate.user.auth.dto.LoginRequest;
 import com.example.boilerplate.user.auth.dto.SignUpRequest;
+import com.example.boilerplate.util.HttpServletRequestUtils;
+import com.example.boilerplate.exception.BadRequestException;
 import com.example.boilerplate.user.repository.RoleRepository;
 import com.example.boilerplate.user.repository.UserRepository;
-import com.example.boilerplate.util.HttpServletRequestUtils;
+import com.example.boilerplate.common.VerificationCodeGenerator;
+import com.example.boilerplate.exception.UnauthorizedAccessException;
+import com.example.boilerplate.user.auth.dto.EmailVerificationRequest;
+import com.example.boilerplate.user.auth.dto.JWTAuthenticationResponse;
+
 import freemarker.template.TemplateException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.util.Collections;
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.UUID;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.Collections;
 
 @Service
 public class AuthService {

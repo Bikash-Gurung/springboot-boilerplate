@@ -20,7 +20,7 @@ public class CronJob {
     private AuthTokenService authTokenService;
 
     @Scheduled(fixedDelay = 300000)
-    public void syncTransactions() {
+    public void deleteInactiveAccessTokens() {
         logger.info("Delete Inactive Access Token:: Execution Time - {}",
                 dateTimeFormatter.format(LocalDateTime.now()));
         authTokenService.removeInactiveTokens();

@@ -2,19 +2,22 @@ package com.example.boilerplate.mail;
 
 import com.example.boilerplate.entity.User;
 import com.example.boilerplate.enums.EmailTemplate;
+
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
+
+import org.springframework.stereotype.Service;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+
+import java.util.Map;
+import java.util.HashMap;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class MailService {

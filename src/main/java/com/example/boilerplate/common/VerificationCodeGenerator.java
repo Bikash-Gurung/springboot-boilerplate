@@ -1,7 +1,7 @@
 package com.example.boilerplate.common;
 
-import java.security.SecureRandom;
 import java.util.Random;
+import java.security.SecureRandom;
 
 public class VerificationCodeGenerator {
     private static final int MAX_VERIFICATION_CODE = 99999;

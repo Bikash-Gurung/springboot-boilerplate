@@ -1,14 +1,16 @@
 package com.example.boilerplate.user;
 
 import com.example.boilerplate.entity.User;
-import com.example.boilerplate.exception.ResourceNotFoundException;
-import com.example.boilerplate.user.dto.UpdateUserNameRequest;
 import com.example.boilerplate.user.dto.UserInfoResponse;
+import com.example.boilerplate.user.dto.UpdateUserNameRequest;
 import com.example.boilerplate.user.repository.UserRepository;
+import com.example.boilerplate.exception.ResourceNotFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.UUID;

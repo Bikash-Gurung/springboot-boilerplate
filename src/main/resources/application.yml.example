@@ -30,4 +30,4 @@ spring:
             enable: true
 app:
   jwtSecret: 7vC&xTPpHp*_$Ca48#uHpz-C3PN$P$7N3$^LjvkN
-  jwtExpirationInMs: 300000
+  jwtExpirationInMiliSeconds: 300000

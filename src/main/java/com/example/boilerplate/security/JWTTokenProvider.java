@@ -23,12 +23,12 @@ public class JWTTokenProvider {
     @Value("${app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${app.jwtExpirationInMs}")
-    private int jwtExpirationInMs;
+    @Value("${app.jwtExpirationInMiliSeconds}")
+    private int jwtExpirationInMiliSeconds;
 
     public String generateToken() {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+        Date expiryDate = new Date(now.getTime() + jwtExpirationInMiliSeconds);
 
         return Jwts.builder()
                 .setIssuedAt(new Date())

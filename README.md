@@ -15,6 +15,17 @@ This is Spring Boot boilerplate project with JWT based authentication and Role b
  - Logout
  - Update user name
 
+# Configuration
+1. Clone this repository in your local machine
+2. Create application.yml file the same directory where application.yml.example file is present, and copy all the content from application.yml.example
+3. Create a database in MySQL(Any preferred database)
+4. Update database name, username and password in application.yml
+5. Generate email password from your Gmail account (Or you can use any email service provider) [follow this link https://support.google.com/mail/answer/185833?hl=en]
+6. Add email credential in application.yml file
+
+Thats all. You are ready to go.
+
+
 # API Detail
 1. User Signup
 >      curl --location --request POST 'http://localhost:8080/api/auth/signup' \

@@ -22,8 +22,13 @@ This is Spring Boot boilerplate project with JWT based authentication and Role b
 4. Update database name, username and password in application.yml
 5. Generate email password from your Gmail account (Or you can use any email service provider) [follow this link https://support.google.com/mail/answer/185833?hl=en]
 6. Add email credential in application.yml file
+7. Run the application
+8. Insert ROLE_USER and ROLE_ADMIN in the roles table in database
+   INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+   INSERT INTO roles (name) VALUES ('ROLE_USER');
 
-Thats all. You are ready to go.
+
+That's all. You are ready to go.
 
 
 # API Detail

@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 
 @Getter
 public enum EmailTemplate {
-    EMAIL_VERIFICATION("email-verification.ftl", "Verify your email");
+    EMAIL_VERIFICATION("email-verification.ftl", "Verify your email"),
+    GREETING("greeting.ftl", "Welcome");
 
     private String templateName;
     private String mailSubject;

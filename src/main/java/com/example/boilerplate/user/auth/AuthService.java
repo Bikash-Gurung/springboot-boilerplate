@@ -24,9 +24,11 @@ import com.example.boilerplate.user.auth.dto.JWTAuthenticationResponse;
 
 import freemarker.template.TemplateException;
 
+import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +40,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Email;
 
-import java.util.UUID;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.io.IOException;
-import java.util.Collections;
 
 @Service
 public class AuthService {
@@ -77,6 +77,9 @@ public class AuthService {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    private MessageSource messageSource;
+
     @Transactional
     public JWTAuthenticationResponse register(SignUpRequest signUpRequest) {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -87,10 +90,13 @@ public class AuthService {
         String jwtToken = jwtTokenProvider.generateToken();
         authTokenService.create(user.getId(), jwtToken);
 
+        Locale nepali = new Locale("ne", "NP");
+
         try {
-            mailService.sendEmail(user, EmailTemplate.EMAIL_VERIFICATION);
+//            mailService.sendEmail(user, EmailTemplate.EMAIL_VERIFICATION);
+            mailService.sendEmailWithLocale(user, EmailTemplate.GREETING, nepali);
         } catch (MessagingException | IOException | TemplateException e) {
-            logger.error("Unable to send email verification email to user {}", user.getEmail());
+            logger.error(messageSource.getMessage("unableToSendEmail", new Object[] {user.getEmail()}, nepali));
         }
 
         return new JWTAuthenticationResponse(jwtToken);
